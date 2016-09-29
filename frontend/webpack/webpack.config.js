@@ -10,24 +10,24 @@ import autoprefixer from 'autoprefixer'
 import css_custom_properties from 'postcss-custom-properties'
 import postcss_calc from 'postcss-calc'
 
-const root_folder = path.resolve(__dirname, '..', '..')
-const frontend_root_folder = path.resolve(__dirname, '..')
+const root_folder = path.resolve(__dirname, '..', '..');
+const frontend_root_folder = path.resolve(__dirname, '..');
 
-const assets_source_folder = path.resolve(frontend_root_folder, 'assets')
+const assets_source_folder = path.resolve(frontend_root_folder, 'assets');
 
-const webpack_isomorphic_tools_plugin = new Webpack_isomorphic_tools_plugin(webpack_isomorphic_tools_configuration)
+const webpack_isomorphic_tools_plugin = new Webpack_isomorphic_tools_plugin(webpack_isomorphic_tools_configuration);
 
-const define_plugin_global_variables = {}
+const define_plugin_global_variables = {};
 Object.keys(global_variables).forEach(function(key)
 {
 	define_plugin_global_variables[key] = JSON.stringify(global_variables[key])
-})
+});
 
 const regular_expressions =
 {
 	javascript : /\.js$/,
 	styles     : /\.scss$/
-}
+};
 
 const configuration =
 {
@@ -51,7 +51,7 @@ const configuration =
 		filename: '[name].[hash].js',
 
 		// file name pattern for chunk scripts
-		chunkFilename: '[name].[hash].js',
+		chunkFilename: '[name].[hash].js'
 
 		// sourceMapFilename: '[file].map'
 	},
@@ -130,25 +130,19 @@ const configuration =
 		]
 	},
 
-	// maybe some kind of a progress bar during compilation
-	progress: true,
+	
 
-	postcss: () =>
-	([
-		autoprefixer({ browsers: 'last 2 version' }),
-		css_custom_properties(),
-		postcss_calc()
-	]),
+
 
 	resolve:
 	{
 		// you can now require('file') instead of require('file.coffee')
-		extensions: ['', '.json', '.js'],
+		extensions: ['.jsx', '.json', '.js'],
 
 		// An array of directory names to be resolved to the current directory 
 		// as well as its ancestors, and searched for modules. 
 		// This functions similarly to how node finds “node_modules” directories. 
-		modulesDirectories: ['node_modules']
+		moduleExtensions: ['node_modules']
 	},
 
 	plugins:
@@ -160,9 +154,24 @@ const configuration =
 		// global variables
 		new webpack.DefinePlugin(define_plugin_global_variables)
 	]
-}
+};
 
-module.exports = configuration
+module.exports = configuration;
 
 // will be used in development and production configurations
-configuration.regular_expressions = regular_expressions
+//configuration.regular_expressions = regular_expressions
+
+
+
+
+
+/*
+ postcss: () =>
+ ([
+ autoprefixer({ browsers: 'last 2 version' }),
+ css_custom_properties(),
+ postcss_calc()
+ ]),
+ */
+// maybe some kind of a progress bar during compilation
+//progress: true,

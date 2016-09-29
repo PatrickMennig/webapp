@@ -12,6 +12,12 @@ import base_configuration from './webpack.config'
 
 import application_configuration from '../../code/configuration'
 
+const regular_expressions =
+{
+	javascript : /\.js$/,
+	styles     : /\.scss$/
+};
+
 const configuration = Object.clone(base_configuration)
 
 // configuration.devtool = 'inline-source-map'
@@ -73,7 +79,7 @@ configuration.output.publicPath = `http://${application_configuration.developmen
 
 const javascript_loader = configuration.module.loaders.filter(loader =>
 {
-	return loader.test.toString() === configuration.regular_expressions.javascript.toString()
+	return loader.test.toString() === regular_expressions.javascript.toString()
 })
 .first()
 

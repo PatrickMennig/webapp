@@ -12,6 +12,12 @@ import application_configuration from '../../code/configuration'
 
 const configuration = Object.clone(base_configuration)
 
+const regular_expressions =
+{
+	javascript : /\.js$/,
+	styles     : /\.scss$/
+};
+
 configuration.devtool = 'cheap-module-source-map'
 
 configuration.output.filename      = configuration.output.filename.replace('[hash]', '[chunkhash]')
@@ -67,7 +73,7 @@ configuration.plugins = configuration.plugins.concat
 // find the styles loader
 const scss_loader = configuration.module.loaders.filter(loader =>
 {
-	return loader.test.toString() === configuration.regular_expressions.styles.toString()
+	return loader.test.toString() === regular_expressions.styles.toString()
 })
 .first()
 
